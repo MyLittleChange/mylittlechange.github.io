@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="PROGRESS: A data- and compute-efficient framework for dynamic VLM instruction tuning.">
+  <meta property="og:title" content="Learning What Matters: Prioritized Concept Learning via Relative Error-driven Sample Selection"/>
+  <meta property="og:description" content="PROGRESS enables VLMs to dynamically select informative samples based on evolving learning needs, achieving full-data performance with only 20% of the data."/>
+  <meta property="og:url" content="YOUR_WEBSITE_URL_HERE"/>
+  <meta property="og:image" content="static/images/teaser.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="PROGRESS: Prioritized Concept Learning for VLMs">
+  <meta name="twitter:description" content="Efficient VLM instruction tuning through relative error-driven sample selection.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="Vision-Language Models, Instruction Tuning, Data Efficiency, Curriculum Learning, Machine Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PROGRESS - Learning What Matters</title>
+  <link rel="icon" type="image/x-icon" href="https://mila.quebec/sites/default/themes/mila_v1/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Learning What Matters: Prioritized Concept Learning via Relative Error-driven Sample Selection</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://mylittlechange.github.io/" target="_blank">Qian Yang</a><sup>*1,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&user=ZER2BeIAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Shivam Chandhok</a><sup>*1,2,4</sup>,</span>
+            <span class="author-block">
+              <a href="https://oscmansan.github.io/" target="_blank">Oscar Mañas</a><sup>1,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://kanji95.github.io/" target="_blank">Kanishk Jain</a><sup>1,3</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.cs.ubc.ca/~lsigal/" target="_blank">Leonid Sigal</a><sup>2,4,5</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.iro.umontreal.ca/~agrawal/" target="_blank">Aishwarya Agrawal</a><sup>†1,3,5</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Mila - Québec AI Institute,</span>
+            <span class="author-block"><sup>2</sup>UBC,</span>
+            <span class="author-block"><sup>3</sup>Université de Montréal,</span>
+            <span class="author-block"><sup>4</sup>Vector Institute,</span>
+            <span class="author-block"><sup>5</sup>Canada CIFAR AI Chair</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://github.com/YOUR_REPO" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2506.01085v1" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="images/method.png" alt="PROGRESS Pipeline" style="width: 100%; height: auto;">
+      <h2 class="subtitle has-text-centered">
+        PROGRESS dynamically selects informative samples based on the model's evolving learning state across automatically discovered skill clusters.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">✨ Highlights ✨</h2>
+    <div class="content">
+      <ul>
+        <li><strong>Efficient Learning:</strong> Achieves near full-data performance using only 16-20% of labeled training data.</li>
+        <li><strong>Dynamic Selection:</strong> Periodically self-evaluates to identify skills where performance improves fastest relative to its prior state.</li>
+        <li><strong>Self-Contained:</strong> Requires no upfront answer annotations, no auxiliary reference VLMs, and no compute-heavy gradient computations.</li>
+        <li><strong>Scalable & Transferable:</strong> Shows strong cross-architecture generalization (e.g., LLaVA-1.5 to Qwen2-VL) without model-specific tuning.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Instruction tuning has been central to the success of recent vision-language models (VLMs), but it remains expensive—requiring large-scale datasets, high-quality annotations, and large compute budgets. We propose PROGRESS, a data- and compute-efficient framework that enables VLMs to dynamically select what to learn next based on their evolving needs during training. At each stage, the model tracks its learning progress across skills and selects the most informative samples—those it has not already mastered and that are not too difficult to learn at the current stage of training. This strategy effectively controls skill acquisition and the order in which skills are learned. PROGRESS requires no upfront answer annotations, queries answers only on a need basis, and avoids reliance on additional supervision from auxiliary VLMs. Experiments demonstrate that PROGRESS consistently outperforms state-of-the-art baselines with much less data and supervision.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section is-small">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Approach</h2>
+    <div class="content">
+      <p>PROGRESS employs a two-stage pipeline for efficient training:</p>
+      <ol>
+        <li><strong>Multimodal Concept Categorization:</strong> Unsupervised partitioning of the unlabeled pool into <i>K</i> skill clusters using concatenated DINO (visual) and BERT (textual) features.</li>
+        <li><strong>Prioritized Concept Learning:</strong> A self-paced strategy where the model prioritizes skills showing the highest relative improvement (Δ) in accuracy or loss compared to its prior state.</li>
+      </ol>
+      <p>We use a temperature-controlled softmax to balance <strong>informativeness</strong> (focusing on high-improvement skills) and <strong>diversity</strong> (preventing mode collapse).</p>
+    </div>
+  </div>
+</section>
+
+<section class="section is-small is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Main Results</h2>
+    
+    <div class="tabs is-centered mb-6">
+      <ul>
+        <li class="is-active">
+          <a onclick="switchTab('main-results')">
+            <span class="icon is-small"><i class="fas fa-chart-bar"></i></span>
+            <span>Main Results</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="switchTab('architecture')">
+            <span class="icon is-small"><i class="fas fa-cubes"></i></span>
+            <span>Generalization</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="switchTab('wall-clock')">
+            <span class="icon is-small"><i class="fas fa-clock"></i></span>
+            <span>Wall-Clock Time</span>
+          </a>
+        </li>
+        <li>
+          <a onclick="switchTab('difficulty')">
+            <span class="icon is-small"><i class="fas fa-layer-group"></i></span>
+            <span>Benchmark Difficulty Impact</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <!-- Main Results Tab -->
+      <div id="main-results" class="tab-content is-active">
+        <p>Across 14 diverse vision-language benchmarks, PROGRESS achieves 98.8% relative performance on LLaVA-665K with 20% data.</p>
+        <ul>
+        <img src="images/results_table.png" alt="Experimental Results Table" style="width: 100%; height: auto;" class="mb-4">
+        
+      </div>
+
+      <!-- Architecture & Generalization Tab -->
+      <div id="architecture" class="tab-content" style="display: none;">
+        <div class="content">
+          <p>
+            PROGRESS exhibits robust scalability and cross-architecture generalization. It demonstrates strong transferability to newer architectures, achieving <strong>100% relative performance</strong> on <strong>Qwen2-VL-7B</strong> and ranking first or second on 9 out of 11 benchmarks. Furthermore, on the <strong>Vision-Flan</strong> dataset with a stricter 16.7% budget, PROGRESS maintained 99.0% relative performance, significantly outperforming COINCIDE and Random sampling
+          </p>
+          
+        </div>
+        <img src="images/architecture_generalization.png" alt="Architecture and Dataset Generalization" style="width: 100%; height: auto;" class="mb-4">
+      </div>
+
+      <!-- Wall-Clock Time Tab -->
+      <div id="wall-clock" class="tab-content" style="display: none;">
+        <p>PROGRESS is Pareto superior to baselines, achieving higher accuracy in less total computational time. Full-data finetuning requires ~9 hr (and 100% data for training), much higher than our method which needs only 5.67hr of total training time and 20% data for training.</p>
+        <div style="text-align: center;">
+          <img src="images/wall_clock_comparison.png" alt="Wall-Clock Time Comparison" style="width: 40%; height: auto;" class="mb-4">
+        </div>
+      </div>
+
+      <!-- Benchmark Difficulty Tab -->
+      <div id="difficulty" class="tab-content" style="display: none;">
+        <p>PROGRESS targets a "sweet spot" in the mid-rarity range, prioritizing skills with the highest potential for improvement. By bypassing over-abundant, saturated concepts and those too rare to generalize, the framework operates within the Zone of Proximal Development. This strategy ensures the model learns most effectively by focusing on tasks that are just beyond its current ability—neither too easy nor too difficult.</p>
+        <div style="text-align: center;">
+          <img src="images/difficulty_frequency_impact.png" alt="Benchmark Difficulty and Data Frequency Impact" style="width: 70%; height: auto;" class="mb-4">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function switchTab(tabName) {
+  // Hide all tab contents
+  const tabContents = document.querySelectorAll('.tab-content');
+  tabContents.forEach(content => {
+    content.style.display = 'none';
+  });
+
+  // Remove active class from all tabs
+  const tabs = document.querySelectorAll('.tabs ul li');
+  tabs.forEach(tab => {
+    tab.classList.remove('is-active');
+  });
+
+  // Show selected tab content
+  document.getElementById(tabName).style.display = 'block';
+
+  // Add active class to clicked tab
+  event.target.closest('li').classList.add('is-active');
+}
+</script>
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">Citation</h2>
+    <pre><code>@article{chandhok2025learning,
+  title={Learning What Matters: Prioritized Concept Learning via Relative Error-driven Sample Selection},
+  author={Chandhok, Shivam and Yang, Qian and Manas, Oscar and Jain, Kanishk and Sigal, Leonid and Agrawal, Aishwarya},
+  journal={arXiv preprint arXiv:2506.01085},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+        Built with the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
