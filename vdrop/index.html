@@ -75,8 +75,9 @@
     transition:background .15s, transform .15s;}
   .lbtn:hover{background:var(--btn-hover); text-decoration:none; transform:translateY(-1px); color:#fff;}
   .lbtn i{font-size:16px; opacity:.95;}
-  .hero .datanote{margin:14px auto 0; font-family:var(--body); font-size:14px; color:var(--muted); max-width:60ch;}
-  .hero .datanote b{color:var(--ink); font-weight:600;}
+  .lbtn .stack{display:inline-flex; flex-direction:column; line-height:1.18; text-align:left;}
+  .lbtn .stack b{font-weight:600;}
+  .lbtn .stack small{font-size:11px; font-weight:400; opacity:.82; letter-spacing:.01em;}
 
   /* ---------- figures ---------- */
   figure{margin:0;}
@@ -187,9 +188,8 @@
     <div class="links">
       <a class="lbtn" href="https://arxiv.org/abs/2605.27310" target="_blank" rel="noopener"><i class="ai ai-arxiv"></i> arXiv</a>
       <a class="lbtn" href="https://github.com/MyLittleChange/VDrop" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
-      <a class="lbtn" href="https://huggingface.co/datasets/QianYangMILA/vdrop-crossview-8k" target="_blank" rel="noopener"><i class="fa-solid fa-database"></i> Data</a>
+      <a class="lbtn" href="https://huggingface.co/datasets/QianYangMILA/vdrop-crossview-8k" target="_blank" rel="noopener"><i class="fa-solid fa-database"></i> <span class="stack"><b>Dataset</b><small>8K cross-view QA · 3 reasoning images</small></span></a>
     </div>
-    <p class="datanote"><b>8K cross-view QA</b> pairs, each scene with <b>3 intermediate reasoning images</b> (panorama · top-down · point-matching).</p>
 
     <div class="fig scroll">
       <div class="inner"><div class="mat"><img src="images/teaser.jpg" alt="Overview: two input views and a cross-view question; three thinking-image strategies (panorama, point matching, top-down) with a learnability-informativeness quadrant; and View Dropout forcing the answer to route through the thinking-image."></div></div>
