@@ -75,6 +75,8 @@
     transition:background .15s, transform .15s;}
   .lbtn:hover{background:var(--btn-hover); text-decoration:none; transform:translateY(-1px); color:#fff;}
   .lbtn i{font-size:16px; opacity:.95;}
+  .hero .datanote{margin:14px auto 0; font-family:var(--body); font-size:14px; color:var(--muted); max-width:60ch;}
+  .hero .datanote b{color:var(--ink); font-weight:600;}
 
   /* ---------- figures ---------- */
   figure{margin:0;}
@@ -169,7 +171,7 @@
     <div class="authors">
       <a href="https://mylittlechange.github.io/" target="_blank">Qian Yang</a><sup>1,2</sup>,
       Ankur Sikarwar<sup>*,1,2</sup>,
-      Huy Le<sup>†,1,2</sup>,
+      Huy Le<sup>*,1,2</sup>,
       Le Zhang<sup>1,2</sup>,
       Zhuan Shi<sup>1,3</sup>,
       Perouz Taslakian<sup>1,3,4</sup>,
@@ -179,7 +181,7 @@
       <sup>1</sup>Mila – Québec AI Institute &nbsp;·&nbsp; <sup>2</sup>Université de Montréal &nbsp;·&nbsp;
       <sup>3</sup>McGill University &nbsp;·&nbsp; <sup>4</sup>ServiceNow AI Research &nbsp;·&nbsp;
       <sup>5</sup>Canada CIFAR AI Chair<br>
-      <span class="contact"><sup>*,†</sup> Equal contribution &nbsp;·&nbsp; {qian.yang, aishwarya.agrawal}@mila.quebec</span>
+      <span class="contact"><sup>*</sup> Equal contribution &nbsp;·&nbsp; {qian.yang, aishwarya.agrawal}@mila.quebec</span>
     </div>
 
     <div class="links">
@@ -187,6 +189,7 @@
       <a class="lbtn" href="https://github.com/MyLittleChange/VDrop" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Code</a>
       <a class="lbtn" href="https://huggingface.co/datasets/QianYangMILA/vdrop-crossview-8k" target="_blank" rel="noopener"><i class="fa-solid fa-database"></i> Data</a>
     </div>
+    <p class="datanote"><b>8K cross-view QA</b> pairs, each scene with <b>3 intermediate reasoning images</b> (panorama · top-down · point-matching).</p>
 
     <div class="fig scroll">
       <div class="inner"><div class="mat"><img src="images/teaser.jpg" alt="Overview: two input views and a cross-view question; three thinking-image strategies (panorama, point matching, top-down) with a learnability-informativeness quadrant; and View Dropout forcing the answer to route through the thinking-image."></div></div>
