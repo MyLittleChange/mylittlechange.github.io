@@ -170,6 +170,17 @@
   .tl h3{font-size:19px; font-weight:700; margin:12px 0 8px;}
   .tl p{margin:0; color:var(--muted); font-size:15px; line-height:1.65;}
   .tl p b{color:var(--ink);}
+  /* ---------- two-column task / idea ---------- */
+  .wrap.wide{max-width:1240px;}
+  .pair{display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,48px);}
+  .pcol{display:grid; grid-row:span 3; grid-template-rows:subgrid; row-gap:0;}
+  .phead{text-align:center; margin-bottom:24px;}
+  .phead h2{font-size:clamp(23px,2.6vw,29px);}
+  .phead .lead{font-size:16.5px; margin:12px auto 0; max-width:60ch;}
+  .pcol .mat{background:#fff; border:1px solid var(--line-strong); border-radius:12px;
+    padding:clamp(10px,1.5vw,16px); box-shadow:0 1px 3px rgba(20,30,50,.05); align-self:start;}
+  @media (max-width:900px){.pair{grid-template-columns:1fr;} .pcol{grid-row:auto; grid-template-rows:auto;}
+    .pcol + .pcol{margin-top:clamp(28px,6vw,48px);}}
 </style>
 
 <!-- ===================== HERO ===================== -->
@@ -225,43 +236,39 @@
   </div>
 </section>
 
-<!-- ===================== TASK ===================== -->
+<!-- ===================== TASK + VISUAL THINKING ===================== -->
 <section class="reveal">
-  <div class="wrap">
-    <div class="head"><div class="kicker">The task · cross-view spatial reasoning</div><h2>Two photos of one room, one spatial question</h2>
-      <p class="lead">The model sees two images of the same 3D room taken from different camera positions, and
-        answers a multiple-choice question that needs <b>both</b> views — for example, where something seen in one
-        view lies from the viewpoint of the other. To answer, it has to mentally stitch the two partial views into
-        one consistent layout.</p></div>
-    <figure class="fig" style="margin-top:0;">
-      <div class="mat"><img src="images/poster_task.jpg" alt="Left: an isometric render of a bedroom and a floor plan showing two camera positions with overlapping fields of view. Right: the two rendered input views and the question 'From the second view, in which direction is the window with beige curtain?' with options behind-right, front-right (correct), behind-left, front-left."></div>
-      <figcaption class="cap"><b>Example.</b> Both views come from one shared 3D scene (left); the two cameras see
-        overlapping but different parts of the room. Answering “front-right” requires locating the beige-curtained
-        window, which is clearer in View 1, relative to the camera of View 2.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ===================== VISUAL THINKING ===================== -->
-<section class="alt reveal">
-  <div class="wrap">
-    <div class="head"><div class="kicker">The idea · visual thinking</div><h2>Think in images before answering</h2>
-      <p class="lead">Reasoning only in words loses geometry: a text description of a room drops the exact positions
-        and directions the question depends on. A unified multimodal model (here, BAGEL) can instead
-        <b>generate an intermediate image</b> that merges the two views — a <em>thinking-image</em> — and then answer
-        by reading it.</p></div>
-    <figure class="fig" style="margin-top:0;">
-      <div class="mat"><img src="images/poster_visual_thinking.jpg" alt="Pipeline: the two input views and question go into the model, which first draws a thinking-image — a panorama, a point-matching image, or a top-down view — and then answers 'B) front-right'."></div>
-      <figcaption class="cap"><b>Visual thinking.</b> Before answering, the model draws one of three kinds of
-        thinking-image: a <b>panorama</b> that unifies both views, a <b>point-matching</b> image marking the same
-        objects in both views, or a <b>top-down</b> view of the room. Which kind to draw is the “what to imagine”
-        question we return to below.</figcaption>
-    </figure>
+  <div class="wrap wide">
+    <div class="pair">
+      <div class="pcol">
+        <div class="phead"><div class="kicker">The task · cross-view spatial reasoning</div><h2>Two photos of one room, one spatial question</h2>
+          <p class="lead">The model sees two images of the same 3D room taken from different camera positions, and
+            answers a multiple-choice question that needs <b>both</b> views — for example, where something seen in one
+            view lies from the viewpoint of the other. To answer, it has to mentally stitch the two partial views into
+            one consistent layout.</p></div>
+        <div class="mat"><img src="images/poster_task.jpg" alt="Left: an isometric render of a bedroom and a floor plan showing two camera positions with overlapping fields of view. Right: the two rendered input views and the question 'From the second view, in which direction is the window with beige curtain?' with options behind-right, front-right (correct), behind-left, front-left."></div>
+        <p class="cap"><b>Example.</b> Both views come from one shared 3D scene (left); the two cameras see
+          overlapping but different parts of the room. Answering “front-right” requires locating the beige-curtained
+          window, which is clearer in View 1, relative to the camera of View 2.</p>
+      </div>
+      <div class="pcol">
+        <div class="phead"><div class="kicker">The idea · visual thinking</div><h2>Think in images before answering</h2>
+          <p class="lead">Reasoning only in words loses geometry: a text description of a room drops the exact positions
+            and directions the question depends on. A unified multimodal model (here, BAGEL) can instead
+            <b>generate an intermediate image</b> that merges the two views — a <em>thinking-image</em> — and then answer
+            by reading it.</p></div>
+        <div class="mat"><img src="images/poster_visual_thinking.jpg" alt="Pipeline: the two input views and question go into the model, which first draws a thinking-image — a panorama, a point-matching image, or a top-down view — and then answers 'B) front-right'."></div>
+        <p class="cap"><b>Visual thinking.</b> Before answering, the model draws one of three kinds of
+          thinking-image: a <b>panorama</b> that unifies both views, a <b>point-matching</b> image marking the same
+          objects in both views, or a <b>top-down</b> view of the room. Which kind to draw is the “what to imagine”
+          question we return to below.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ===================== METHOD: VDROP ===================== -->
-<section class="reveal">
+<section class="alt reveal">
   <div class="wrap">
     <div class="head"><div class="kicker">Method · How to imagine</div><h2>Training with images ≠ using them</h2>
       <p class="lead">The standard recipe supervises both the thinking-image and the answer, but never forces the
@@ -306,7 +313,7 @@
 </section>
 
 <!-- ===================== CONTRIBUTIONS ===================== -->
-<section class="alt reveal">
+<section class="reveal">
   <div class="wrap">
     <div class="head"><div class="kicker">Contributions</div><h2>What this paper contributes</h2></div>
     <div class="grid g3">
@@ -327,7 +334,7 @@
 </section>
 
 <!-- ===================== STRATEGIES ===================== -->
-<section class="reveal">
+<section class="alt reveal">
   <div class="wrap">
     <div class="head"><div class="kicker">What to imagine · three strategies</div><h2>Three ways to bridge two views</h2></div>
     <div class="grid g3">
@@ -354,7 +361,7 @@
 </section>
 
 <!-- ===================== TRAINING DATA ===================== -->
-<section class="alt reveal">
+<section class="reveal">
   <div class="wrap">
     <div class="head"><div class="kicker">Training data</div><h2>An 8K training set with ground-truth thinking-images</h2>
       <p class="lead">Built from <b>Infinigen Indoors</b> procedural 3D scenes — so every sample comes with an
@@ -389,7 +396,7 @@
 </section>
 
 <!-- ===================== MAIN RESULTS ===================== -->
-<section class="reveal">
+<section class="alt reveal">
   <div class="wrap">
     <div class="head"><div class="kicker">Main results</div><h2>Panoramic + VDrop generalizes best out-of-domain</h2>
       <p class="lead">Accuracy (%). Everything below the prior-work block is BAGEL fine-tuned on the same 8K Infinigen
@@ -432,7 +439,7 @@
 </section>
 
 <!-- ===================== GENERATE-THEN-BLIND ===================== -->
-<section class="alt reveal">
+<section class="reveal">
   <div class="wrap">
     <div class="head"><div class="kicker">Is the thinking-image causally used?</div><h2>Generate, then blind</h2>
       <p class="lead">The model draws the thinking-image as usual; then, before answering, we mask the answer span's
@@ -463,7 +470,7 @@
 </section>
 
 <!-- ===================== L-I TRADEOFF ===================== -->
-<section class="reveal">
+<section class="alt reveal">
   <div class="wrap">
     <div class="head"><div class="kicker">What to imagine · the L–I tradeoff</div>
       <h2>Informative <span style="color:var(--faint);">and</span> learnable — panorama is the only one</h2>
@@ -514,7 +521,7 @@
 </section>
 
 <!-- ===================== CITATION ===================== -->
-<section class="alt reveal">
+<section class="reveal">
   <div class="wrap" style="max-width:900px;">
     <div class="head"><div class="kicker">Citation</div><h2>Cite this work</h2></div>
     <pre><span class="k">@article</span>{yang2026and,
